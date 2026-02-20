@@ -1,75 +1,98 @@
-const experiences = [
-  {
-    role: "Senior Data Scientist",
-    company: "TechCorp Inc.",
-    period: "2022 – Present",
-    description: "Leading a team of 4 data scientists building ML models for customer analytics. Reduced churn by 22% through predictive modeling and automated intervention systems.",
-  },
-  {
-    role: "Data Scientist",
-    company: "DataFlow Solutions",
-    period: "2020 – 2022",
-    description: "Designed and deployed NLP pipelines processing 50K+ documents daily. Built real-time dashboards for executive decision-making using Python and cloud services.",
-  },
-  {
-    role: "Junior Data Scientist",
-    company: "Analytics Lab",
-    period: "2018 – 2020",
-    description: "Conducted statistical analysis and A/B testing for marketing campaigns. Developed forecasting models that improved inventory planning accuracy by 30%.",
-  },
-  {
-    role: "Data Analyst Intern",
-    company: "StartUp Hub",
-    period: "2017 – 2018",
-    description: "Created automated reporting dashboards and performed exploratory data analysis. Collaborated with product teams to define KPIs and tracking frameworks.",
-  },
-];
+import { useMemo, useState } from "react";
+import { BriefcaseBusiness, MapPin } from "lucide-react";
+
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { portfolioData } from "@/data/portfolioData";
+import { cn } from "@/lib/utils";
 
 const ExperienceSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  const { items, initialVisibleCount } = portfolioData.experience;
+
+  const visibleItems = useMemo(
+    () => (showAll ? items : items.slice(0, initialVisibleCount)),
+    [items, initialVisibleCount, showAll],
+  );
+
   return (
-    <section id="experience" className="py-24 px-6 bg-muted/40">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-primary text-sm tracking-widest uppercase mb-3 font-body">Experience</p>
-        <h2 className="section-heading">Professional Timeline</h2>
-        <p className="section-subtitle">
-          A track record of delivering impactful data solutions across industries.
-        </p>
+    <section id="experience" className="section-shell bg-muted/40" aria-labelledby="experience-heading">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          id="experience-heading"
+          eyebrow="Experience"
+          title="Experience"
+        />
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+          <div className="absolute left-3 top-0 h-full w-px bg-border md:left-1/2" aria-hidden />
 
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div
-                key={exp.role}
-                className={`relative flex flex-col md:flex-row gap-6 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
-                {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary border-2 border-background -translate-x-1/2 mt-2 z-10" />
+          <div className="space-y-6">
+            {visibleItems.map((item, index) => {
+              const isEven = index % 2 === 0;
 
-                {/* Content */}
-                <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <div className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
-                    <span className="text-primary text-xs font-body font-medium tracking-wide uppercase">
-                      {exp.period}
-                    </span>
-                    <h3 className="font-display text-xl mt-1">{exp.role}</h3>
-                    <p className="text-primary/70 text-sm font-body font-medium mb-3">{exp.company}</p>
-                    <p className="text-muted-foreground text-sm font-body leading-relaxed">
-                      {exp.description}
-                    </p>
-                  </div>
-                </div>
+              return (
+                <Reveal key={`${item.company}-${item.role}-${item.dates}`} delayMs={index * 60}>
+                  <article className="relative grid gap-4 pl-10 md:grid-cols-2 md:pl-0">
+                    <span
+                      className="absolute left-0 top-6 h-6 w-6 rounded-full border-4 border-background bg-primary md:left-1/2 md:-translate-x-1/2"
+                      aria-hidden
+                    />
 
-                {/* Spacer for the other side */}
-                <div className="hidden md:block md:w-1/2" />
-              </div>
-            ))}
+                    <div
+                      className={cn(
+                        "surface-card p-6",
+                        isEven ? "md:col-start-1 md:pr-10" : "md:col-start-2 md:pl-10",
+                      )}
+                    >
+                      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-primary">{item.dates}</p>
+                          <h3 className="mt-1 text-xl font-display text-foreground">{item.role}</h3>
+                          <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+                            <BriefcaseBusiness size={14} className="text-primary" />
+                            {item.company}
+                          </p>
+                          <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+                            <MapPin size={14} className="text-primary" />
+                            {item.location}
+                          </p>
+                        </div>
+                      </div>
+
+                      <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.achievements.map((achievement) => (
+                          <li key={achievement} className="flex gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {item.tech.map((tech) => (
+                          <Badge key={tech} variant="secondary" className="chip">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
+
+        {items.length > initialVisibleCount ? (
+          <div className="mt-10 flex justify-center">
+            <Button variant="outline" onClick={() => setShowAll((current) => !current)}>
+              {showAll ? "Show less" : "Show more"}
+            </Button>
+          </div>
+        ) : null}
       </div>
     </section>
   );
