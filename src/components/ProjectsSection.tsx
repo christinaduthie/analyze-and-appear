@@ -3,35 +3,33 @@ import { ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     title: "Sentiment Analysis Engine",
-    description: "Real-time NLP pipeline processing 10K+ tweets/min for brand monitoring. Built with transformers and deployed on AWS Lambda.",
+    description: "Real-time NLP pipeline processing 10K+ tweets/min for brand monitoring. Built with transformer models and deployed on AWS Lambda for scalable inference.",
     tags: ["NLP", "Python", "AWS", "Transformers"],
   },
   {
     title: "Predictive Maintenance Model",
-    description: "Time-series forecasting model reducing equipment downtime by 35%. Integrated with IoT sensor data streams.",
+    description: "Time-series forecasting model reducing equipment downtime by 35%. Integrated with IoT sensor data streams for real-time anomaly detection.",
     tags: ["Time Series", "XGBoost", "IoT", "Docker"],
   },
   {
-    title: "Image Classification API",
-    description: "Production-grade computer vision API achieving 97.2% accuracy on medical imaging data with custom CNN architecture.",
+    title: "Medical Image Classification API",
+    description: "Production-grade computer vision API achieving 97.2% accuracy on medical imaging data with a custom CNN architecture and explainability layer.",
     tags: ["Computer Vision", "PyTorch", "FastAPI", "GCP"],
   },
   {
     title: "Customer Churn Dashboard",
-    description: "Interactive analytics dashboard with ML-powered churn predictions. Reduced churn by 22% through targeted interventions.",
+    description: "Interactive analytics dashboard with ML-powered churn predictions. Enabled targeted interventions that reduced churn by 22%.",
     tags: ["Tableau", "Scikit-learn", "SQL", "Analytics"],
   },
 ];
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-          <span className="text-primary font-normal text-lg block mb-2">// projects</span>
-          Featured Work
-        </h2>
-        <p className="text-secondary-foreground font-body max-w-2xl mb-16">
+    <section id="projects" className="py-24 px-6 bg-muted/40">
+      <div className="max-w-6xl mx-auto">
+        <p className="text-primary text-sm tracking-widest uppercase mb-3 font-body">Projects</p>
+        <h2 className="section-heading">Featured Work</h2>
+        <p className="section-subtitle">
           Selected projects showcasing end-to-end data science solutions.
         </p>
 
@@ -39,10 +37,10 @@ const ProjectsSection = () => {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="bg-card border border-border rounded-lg p-6 hover:border-primary/40 transition-all group"
+              className="bg-card border border-border rounded-xl p-6 hover:shadow-md hover:border-primary/30 transition-all group"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
+                <h3 className="font-display text-xl group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
                 <div className="flex gap-2 text-muted-foreground">
@@ -57,7 +55,7 @@ const ProjectsSection = () => {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-display px-2.5 py-1 rounded-full bg-muted text-muted-foreground border border-border"
+                    className="text-xs font-body px-3 py-1 rounded-full bg-primary/10 text-primary"
                   >
                     {tag}
                   </span>
