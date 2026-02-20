@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,41 +6,38 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 210 20% 90%;
+    --background: 0 0% 98%;
+    --foreground: 220 20% 14%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 90%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 14%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 14%;
 
-    --primary: 174 72% 50%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 220 65% 42%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 16% 16%;
-    --secondary-foreground: 210 20% 80%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 20% 30%;
 
-    --muted: 220 14% 14%;
-    --muted-foreground: 215 12% 50%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: 174 72% 50%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 220 14% 94%;
+    --accent-foreground: 220 20% 14%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 14% 18%;
-    --input: 220 14% 18%;
-    --ring: 174 72% 50%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 220 65% 42%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --font-display: 'JetBrains Mono', monospace;
-    --font-body: 'Inter', sans-serif;
-
-    --glow-primary: 0 0 20px hsl(174 72% 50% / 0.3);
-    --glow-strong: 0 0 40px hsl(174 72% 50% / 0.2);
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
   }
 }
 
@@ -60,23 +57,11 @@
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(174 72% 50%), hsl(174 72% 70%));
+  .section-heading {
+    @apply text-3xl md:text-4xl font-display mb-3 text-foreground;
   }
 
-  .glow {
-    box-shadow: var(--glow-primary);
-  }
-
-  .glow-strong {
-    box-shadow: var(--glow-strong);
-  }
-
-  .grid-bg {
-    background-image: 
-      linear-gradient(hsl(220 14% 18% / 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(220 14% 18% / 0.5) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .section-subtitle {
+    @apply text-muted-foreground font-body max-w-2xl mb-12 leading-relaxed;
   }
 }

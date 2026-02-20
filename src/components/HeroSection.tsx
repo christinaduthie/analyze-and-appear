@@ -2,28 +2,25 @@ import { ArrowDown } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
-      
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <p className="font-display text-primary text-sm tracking-[0.3em] uppercase mb-6 animate-fade-in">
-          &gt; Hello, World
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <div className="w-28 h-28 rounded-full bg-primary/10 mx-auto mb-8 flex items-center justify-center">
+          <span className="text-primary font-display text-4xl">SR</span>
+        </div>
+        <p className="font-body text-primary text-sm tracking-widest uppercase mb-4 animate-fade-in">
+          Data Scientist
         </p>
-        <h1 className="text-5xl md:text-7xl font-bold font-display mb-6 animate-fade-in" style={{ animationDelay: "0.1s", opacity: 0 }}>
-          Alex <span className="text-gradient">Chen</span>
+        <h1 className="text-5xl md:text-6xl font-display mb-6 text-foreground animate-fade-in" style={{ animationDelay: "0.1s", opacity: 0 }}>
+          Samuel Rolands
         </h1>
-        <p className="text-xl md:text-2xl text-secondary-foreground font-body font-light max-w-2xl mx-auto mb-4 animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-          Data Scientist & Machine Learning Engineer
+        <p className="text-lg text-muted-foreground font-body font-light max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
+          Transforming complex data into clear, actionable insights. Specializing in machine learning, statistical modeling, and data-driven strategy.
         </p>
-        <p className="text-muted-foreground font-body max-w-xl mx-auto mb-12 animate-fade-in" style={{ animationDelay: "0.3s", opacity: 0 }}>
-          Turning raw data into actionable insights. Specializing in NLP, computer vision, and predictive analytics.
-        </p>
-        <div className="flex gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s", opacity: 0 }}>
-          <a href="#projects" className="px-6 py-3 bg-primary text-primary-foreground font-display text-sm rounded-md glow hover:glow-strong transition-shadow">
-            View Projects
+        <div className="flex gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.3s", opacity: 0 }}>
+          <a href="#projects" className="px-6 py-3 bg-primary text-primary-foreground font-body text-sm rounded-lg hover:bg-primary/90 transition-colors">
+            View My Work
           </a>
-          <a href="#contact" className="px-6 py-3 border border-border text-foreground font-display text-sm rounded-md hover:border-primary/50 transition-colors">
+          <a href="#contact" className="px-6 py-3 border border-border text-foreground font-body text-sm rounded-lg hover:border-primary/50 transition-colors">
             Get in Touch
           </a>
         </div>
